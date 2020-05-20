@@ -1,15 +1,15 @@
 import { Router } from 'express'
 import multer from 'multer'
-import uploadConfig from '../config/upload'
 
-import CreateUserService from '../services/CreateUserService'
+import uploadConfig from '@config/upload'
+import CreateUserService from '@modules/users/services/CreateUserService'
+import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
 
 import ensureAuthenticated from '../middleware/ensureAuthenticated'
 
-import UpdateUserAvatarService from '../services/UpdateUserAvatarService'
-
 const usersRouter = Router()
 const upload = multer(uploadConfig)
+
 usersRouter.post('/', async (request, response) => {
   try {
     const { name, email, password } = request.body
@@ -23,7 +23,6 @@ usersRouter.post('/', async (request, response) => {
     })
 
     delete user.password
-
     return response.json(user)
   } catch (err) {
     return response.status(400).json({ message: err.message })
