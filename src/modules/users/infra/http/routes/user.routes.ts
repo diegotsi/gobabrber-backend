@@ -1,11 +1,7 @@
 import { Router } from 'express'
 import multer from 'multer'
-import { container } from 'tsyringe'
 
 import uploadConfig from '@config/upload'
-
-import SessionsController from '../controllers/UsersController'
-import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
 
 import ensureAuthenticated from '../middleware/ensureAuthenticated'
 import UsersController from '../controllers/UsersController'
