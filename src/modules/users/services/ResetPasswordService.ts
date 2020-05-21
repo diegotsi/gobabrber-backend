@@ -1,14 +1,10 @@
 import { inject, injectable } from 'tsyringe'
-import { differenceInHours, addHours, isAfter } from 'date-fns'
-
-// import AppError from '@shared/errors/AppError'
+import { addHours, isAfter } from 'date-fns'
 
 import IUsersRepository from '../repositories/IUserRepository'
 import IUserTokenRepository from '../repositories/IUserTokenRepository'
 import IHashProvider from '../providers/HashProvider/models/IHashProvider'
 import AppError from '@shared/errors/AppError'
-
-// import User from '../infra/typeorm/entities/User'
 
 interface IRequest {
   token: string
@@ -34,7 +30,7 @@ class ResetPasswordService {
       throw new AppError('User Token does not exist')
     }
 
-    const user = await this.usersRepository.findById(userToken?.user_id)
+    const user = await this.usersRepository.findById(userToken.user_id)
 
     if (!user) {
       throw new AppError('User does not exist')
