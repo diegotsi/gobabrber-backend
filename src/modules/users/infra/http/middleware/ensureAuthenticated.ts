@@ -34,6 +34,6 @@ export default function ensureAuthenticated(
 
     return next()
   } catch (err) {
-    console.log(err.message)
+    throw new AppError(err.message)
   }
 }
